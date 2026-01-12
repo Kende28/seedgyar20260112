@@ -14,3 +14,13 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model dolgozok {
+  id Int @id @default(autoincrement())
+  csaladnev String
+  utonev String
+  kor Int 
+  nem String?
+  munkaterulet String?
+  otthon_dolgozik Boolean? @default(false) 
+}
