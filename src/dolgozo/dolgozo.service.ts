@@ -5,24 +5,25 @@ import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class DolgozoService {
-  constructor (private readonly prisma: PrismaClient){}
+  constructor (private prisma: PrismaClient){}
+  
   create(createDolgozoDto: CreateDolgozoDto) {
-    return this.prisma;
+    return this.prisma.dolgozok.create({data: createDolgozoDto});
   }
 
   findAll() {
-    return `This action returns all dolgozo`;
+    return this.prisma.dolgozo.finMany();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} dolgozo`;
+    return this.prisma.dolgozok.findUnique({where: {id}});
   }
 
   update(id: number, updateDolgozoDto: UpdateDolgozoDto) {
-    return `This action updates a #${id} dolgozo`;
+    return this.prisma.dolgozok.update({where: {id}, data: updateDolgozoDto});
   }
 
   remove(id: number) {
-    return `This action removes a #${id} dolgozo`;
+    return this.prisma.dolgozok.delete({where: {id}});
   }
 }
